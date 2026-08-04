@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Library from "./pages/Library";
 import AnalysisWorkspace from "./pages/AnalysisWorkspace";
@@ -30,7 +31,25 @@ function Shell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
       <main className="mx-auto max-w-7xl px-6 py-8">{children}</main>
+      <Footer />
     </div>
+  );
+}
+
+function Footer() {
+  const [versions, setVersions] = useState<{ app: string; engine: string } | null>(null);
+  useEffect(() => {
+    fetch("/api/health")
+      .then((r) => r.json())
+      .then((h) => setVersions({ app: h.app_version, engine: h.engine_version }))
+      .catch(() => setVersions(null));
+  }, []);
+  return (
+    <footer className="mx-auto max-w-7xl px-6 pb-6 text-center text-xs text-slate-400">
+      CyberArk PAM Value Analyzer
+      {versions && ` · v${versions.app} · engine v${versions.engine}`} · figures are
+      illustrative benchmarks unless replaced with customer data
+    </footer>
   );
 }
 

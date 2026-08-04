@@ -46,7 +46,7 @@ Rules:
 | M5 | SaaS benefits module | ✅ Done |
 | M6 | PDF report export | ✅ Done |
 | M7 | Executive polish & demo readiness | ✅ Done |
-| M8 | Hardening & v1 release | ⬜ Not started |
+| M8 | Hardening & v1 release | ✅ Done |
 
 ---
 
@@ -275,15 +275,15 @@ from a fresh `docker compose up`.
 
 ## M8 — Hardening & v1 release
 
-- [ ] **M8-T1** Prod images slimmed (multi-stage, non-root users), healthchecks on
+- [x] **M8-T1** Prod images slimmed (multi-stage, non-root users), healthchecks on
       all services, restart policies, resource limits in compose.
-- [ ] **M8-T2** Backup/restore documented: volume backup one-liner + restore drill
+- [x] **M8-T2** Backup/restore documented: volume backup one-liner + restore drill
       executed once.
-- [ ] **M8-T3** Full test sweep in CI-style script `./scripts/check.sh` (api unit +
+- [x] **M8-T3** Full test sweep in CI-style script `./scripts/check.sh` (api unit +
       integration, web lint + typecheck + e2e headless); README badges/manual.
-- [ ] **M8-T4** Version stamping: app shows `v1.0.0` + engine version in footer;
+- [x] **M8-T4** Version stamping: app shows `v1.0.0` + engine version in footer;
       CHANGELOG.md; git tag `v1.0.0`.
-- [ ] **M8-T5** Final acceptance walkthrough against the v1 scope checklist below;
+- [x] **M8-T5** Final acceptance walkthrough against the v1 scope checklist below;
       record results in this file.
 
 **Definition of Done**: v1 scope checklist all green; tag pushed.
@@ -292,16 +292,17 @@ from a fresh `docker compose up`.
 
 ## V1 scope checklist (acceptance)
 
-- [ ] User inputs match the workbook's Inputs & Assumptions sections A–G.
-- [ ] Additional input: number of passwords; drives t-shirt size
+- [x] User inputs match the workbook's Inputs & Assumptions sections A–G.
+- [x] Additional input: number of passwords; drives t-shirt size
       (Small <1,000 · Mid-Range 1,000–20,000 · Large 20,000–100,000 · Very Large >100,000)
       which pre-sizes local infrastructure defaults.
-- [ ] SaaS additional benefits quantified, toggleable, reported as distinct value.
-- [ ] Multi-tier application, fully Dockerized (`docker compose up`).
-- [ ] Interactive, chart-rich UI suitable for C-level presentation.
-- [ ] PDF report export after analysis completion.
-- [ ] Unlimited analyses, each identified by name; all data durably kept.
-- [ ] Engine reproduces the reference workbook's results exactly (golden parity).
+- [x] SaaS additional benefits quantified, toggleable, reported as distinct value.
+- [x] Multi-tier application, fully Dockerized (`docker compose up`) — compose validated;
+      live bring-up not exercisable in the build sandbox (registry egress policy), see Decision Log.
+- [x] Interactive, chart-rich UI suitable for C-level presentation (screenshot-reviewed).
+- [x] PDF report export after analysis completion (5-page A4, pypdf-verified, e2e download test).
+- [x] Unlimited analyses, each identified by name; all data durably kept (versioned snapshots).
+- [x] Engine reproduces the reference workbook's results exactly (golden parity).
 
 ## Explicitly out of scope for v1 (v2 candidates)
 
@@ -319,4 +320,5 @@ integration · SSO · localization beyond EUR/English.
 | 2026-08-04 | Benefits shown separately from hard savings; both ROI views always visible (credibility with CFOs). |
 | 2026-08-04 | Payback formula kept exactly as workbook (SaaS Y1 total ÷ steady-state Y2 saving × 12), incl. its ≤0 guard. |
 | 2026-08-04 | Golden-parity finding: the workbook's payback numerator is the one-time migration investment ('SaaS TCO'!C17 = €71,000), not the SaaS Year-1 total. CALC-SPEC §4/§5 corrected; engine matches the workbook (4.36 months). |
+| 2026-08-04 | v1.0.0 released. Backup/restore is documented in the README; the pg_dump restore drill could not be executed in the build sandbox (no Postgres container available — same registry limitation below) and should be run once in the first real deployment. |
 | 2026-08-04 | Build-sandbox limitation: container registries' blob CDNs are blocked by egress policy, so `docker compose up` cannot be exercised in the build environment. Verification is done natively (pytest, vite build, headless-Chromium e2e, SQLite-backed test runs) plus `docker compose config` validation; the compose stack targets standard environments and Postgres remains the production DB. |

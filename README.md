@@ -84,6 +84,28 @@ make seed        # creates two demo analyses (idempotent)
 9. Close on the Methodology page: every formula is documented and the engine is
    verified against the reference workbook by an automated parity test.
 
+## Backup & restore
+
+All analysis data lives in the `pamroi_pgdata` volume. Logical backup:
+
+```bash
+docker compose exec db pg_dump -U pamroi pamroi > pamroi-backup.sql   # backup
+cat pamroi-backup.sql | docker compose exec -T db psql -U pamroi pamroi   # restore
+```
+
+Volume-level backup (stack stopped):
+
+```bash
+docker run --rm -v pamroi_pamroi_pgdata:/data -v "$PWD":/backup alpine \
+  tar czf /backup/pamroi_pgdata.tgz -C /data .
+```
+
+## Verification
+
+```bash
+./scripts/check.sh   # API tests + web typecheck/build + Playwright e2e
+```
+
 ## Disclaimer
 
 Default unit rates and benefit assumptions are illustrative industry benchmarks, not a

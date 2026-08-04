@@ -15,6 +15,7 @@ services:
       timeout: 3s
       retries: 10
     restart: unless-stopped
+    mem_limit: 512m
 
   api:
     build: ./api
@@ -30,6 +31,7 @@ services:
       timeout: 5s
       retries: 6
     restart: unless-stopped
+    mem_limit: 1g
 
   web:
     build: ./web
@@ -37,7 +39,13 @@ services:
       - "8080:80"
     depends_on:
       - api
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:80/ || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
     restart: unless-stopped
+    mem_limit: 256m
 
   # ---- dev profile: hot reload ----
   api-dev:

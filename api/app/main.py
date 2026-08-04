@@ -1,13 +1,21 @@
 from fastapi import FastAPI
 
 from app.db import db_is_up
+from app.engine import ENGINE_VERSION
 from app.routers import analyses, calc
 
-app = FastAPI(title="CyberArk PAM Value Analyzer API", version="1.0.0")
+APP_VERSION = "1.0.0"
+
+app = FastAPI(title="CyberArk PAM Value Analyzer API", version=APP_VERSION)
 app.include_router(calc.router)
 app.include_router(analyses.router)
 
 
 @app.get("/api/health")
 def health():
-    return {"status": "ok", "db": "up" if db_is_up() else "down"}
+    return {
+        "status": "ok",
+        "db": "up" if db_is_up() else "down",
+        "app_version": APP_VERSION,
+        "engine_version": ENGINE_VERSION,
+    }
