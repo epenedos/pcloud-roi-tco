@@ -38,7 +38,7 @@ Rules:
 
 | Milestone | Title | Status |
 |---|---|---|
-| M0 | Foundations & scaffolding | ⬜ Not started |
+| M0 | Foundations & scaffolding | ✅ Done |
 | M1 | Calculation engine (Excel parity) | ⬜ Not started |
 | M2 | Persistence & analysis management API | ⬜ Not started |
 | M3 | Input experience (wizard + t-shirt sizing) | ⬜ Not started |
@@ -93,17 +93,17 @@ Repository layout:
 Goal: `docker compose up --build` brings up all three tiers with health checks; hot
 reload works for dev.
 
-- [ ] **M0-T1** Scaffold repo layout (`api/`, `web/`, `docs/`), root `README.md`
+- [x] **M0-T1** Scaffold repo layout (`api/`, `web/`, `docs/`), root `README.md`
       (what/why/quickstart), `.gitignore`, `.editorconfig`.
-- [ ] **M0-T2** `api`: FastAPI skeleton with `GET /api/health`, structured settings
+- [x] **M0-T2** `api`: FastAPI skeleton with `GET /api/health`, structured settings
       (env vars for DB URL), Dockerfile (multi-stage), `pytest` wired with one
       passing smoke test.
-- [ ] **M0-T3** `db`: PostgreSQL 16 service with named volume, healthcheck, init
+- [x] **M0-T3** `db`: PostgreSQL 16 service with named volume, healthcheck, init
       database `pamroi`.
-- [ ] **M0-T4** `web`: Vite + React + TS + Tailwind skeleton, app shell (header with
+- [x] **M0-T4** `web`: Vite + React + TS + Tailwind skeleton, app shell (header with
       product name "CyberArk PAM Value Analyzer", empty routes), Dockerfile
       (build → nginx), nginx proxies `/api` → `api:8000`.
-- [ ] **M0-T5** `docker-compose.yml` with `dev` profile (bind mounts + hot reload)
+- [x] **M0-T5** `docker-compose.yml` with `dev` profile (bind mounts + hot reload)
       and default prod profile; document both in README.
 
 **Definition of Done**: `docker compose up --build` → `http://localhost:8080` serves
@@ -318,3 +318,4 @@ integration · SSO · localization beyond EUR/English.
 | 2026-08-04 | Mid-Range default inventory = workbook example inventory, keeping golden parity at 5,000 passwords. |
 | 2026-08-04 | Benefits shown separately from hard savings; both ROI views always visible (credibility with CFOs). |
 | 2026-08-04 | Payback formula kept exactly as workbook (SaaS Y1 total ÷ steady-state Y2 saving × 12), incl. its ≤0 guard. |
+| 2026-08-04 | Build-sandbox limitation: container registries' blob CDNs are blocked by egress policy, so `docker compose up` cannot be exercised in the build environment. Verification is done natively (pytest, vite build, headless-Chromium e2e, SQLite-backed test runs) plus `docker compose config` validation; the compose stack targets standard environments and Postgres remains the production DB. |

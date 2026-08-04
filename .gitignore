@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+web/dist/
+
+# Env / local
+.env
+*.local
+
+# Test artifacts
+test-results/
+playwright-report/
+*.pdf
+!docs/**/*.pdf
+
+# OS
+.DS_Store
