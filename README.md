@@ -1,4 +1,4 @@
-# CyberArk PAM Value Analyzer
+# IDIRA Modern PAM Migration Value
 
 Executive-grade ROI/TCO analysis for migrating CyberArk PAM from self-hosted
 (on-premises) to CyberArk SaaS (Privilege Cloud / Modern PAM).
@@ -7,6 +7,11 @@ Build any number of **named analyses**, drive infrastructure sizing from the **n
 of passwords** under management (t-shirt sizing), quantify **SaaS benefits beyond cost
 savings**, present the results with C-level-ready charts, and export a **boardroom PDF
 report**. All data is kept durably in PostgreSQL.
+
+UI, dashboard and PDF report follow the **IDIRA by Palo Alto Networks** brand
+(2026 one-pager template): Idira blue ramp (#265bff / #061d63), Figtree typeface,
+navy header band and the signature accent rule. Brand tokens live in
+`web/src/index.css` and `web/src/charts/palette.ts`.
 
 The calculation model is specified in [`docs/CALC-SPEC.md`](docs/CALC-SPEC.md) and is
 verified against the reference workbook

@@ -6,7 +6,7 @@ from app.routers import analyses, calc
 
 APP_VERSION = "1.0.0"
 
-app = FastAPI(title="CyberArk PAM Value Analyzer API", version=APP_VERSION)
+app = FastAPI(title="IDIRA Modern PAM Migration Value API", version=APP_VERSION)
 app.include_router(calc.router)
 app.include_router(analyses.router)
 

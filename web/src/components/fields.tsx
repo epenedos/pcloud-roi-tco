@@ -78,7 +78,7 @@ export function NumberField({
           </span>
         )}
       </span>
-      <span className="mt-1 flex items-center overflow-hidden rounded-lg border border-slate-300 bg-white focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
+      <span className="mt-1 flex items-center overflow-hidden rounded-lg border border-slate-300 bg-white focus-within:border-[var(--brand-500)] focus-within:ring-1 focus-within:ring-[var(--brand-250)]">
         <input
           type="number"
           className="w-full border-0 px-3 py-2 text-sm focus:outline-none"
@@ -125,7 +125,7 @@ export function Toggle({
       data-testid={testid}
       onClick={() => onChange(!checked)}
       className={`relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors ${
-        checked ? "bg-blue-600" : "bg-slate-300"
+        checked ? "bg-[var(--brand-500)]" : "bg-slate-300"
       }`}
     >
       <span

@@ -23,7 +23,7 @@ export default function PrintReport() {
       .catch((e) => setError((e as Error).message));
   }, [id]);
 
-  if (error) return <div className="p-10 text-red-700">{error}</div>;
+  if (error) return <div className="p-10 text-[var(--bad)]">{error}</div>;
   if (!analysis) return <div className="p-10 text-slate-400">Loading…</div>;
 
   const { inputs, results } = analysis;
@@ -36,7 +36,7 @@ export default function PrintReport() {
   });
 
   return (
-    <div className="print-report mx-auto max-w-[780px] bg-white text-slate-900" data-testid="print-report">
+    <div className="print-report mx-auto max-w-[780px] bg-white px-8 text-slate-900" data-testid="print-report">
       <style>{`
         @page { size: A4; margin: 14mm; }
         @media print {
@@ -45,21 +45,21 @@ export default function PrintReport() {
         }
       `}</style>
 
-      {/* Cover */}
-      <div className="flex min-h-[900px] flex-col justify-between py-10">
+      {/* Cover — IDIRA one-pager style: navy band with lockup, bold title,
+          signature rule with brand segment */}
+      <div className="flex min-h-[900px] flex-col justify-between pb-10">
         <div>
-          <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--brand-900)] text-lg font-bold text-white">
-              ⛨
-            </div>
-            <div className="text-sm font-semibold uppercase tracking-widest text-slate-500">
-              CyberArk PAM Value Analyzer
-            </div>
+          <div className="-mx-8 flex items-center gap-3 bg-[var(--brand-1000)] px-8 py-6 text-white">
+            <span className="text-xl font-extrabold tracking-[0.22em]">IDIRA</span>
+            <span className="h-6 w-px bg-white/30" />
+            <span className="text-sm font-medium tracking-wide text-[var(--brand-0)]">
+              Modern PAM Migration Value
+            </span>
           </div>
-          <h1 className="mt-16 text-4xl font-bold leading-tight">
-            Privileged Access Management
+          <h1 className="mt-14 text-4xl font-extrabold leading-tight">
+            Modern PAM Migration
             <br />
-            On-Prem → SaaS Business Case
+            Value Report
           </h1>
           <p className="mt-4 text-xl text-slate-600">{analysis.name}</p>
           {analysis.customer_name && (
@@ -67,6 +67,7 @@ export default function PrintReport() {
               Prepared for {analysis.customer_name}
             </p>
           )}
+          <div className="idira-rule mt-8" />
         </div>
         <div>
           <div className="grid grid-cols-3 gap-4 rounded-xl bg-slate-50 p-6">
@@ -74,7 +75,7 @@ export default function PrintReport() {
               <div className="text-xs uppercase tracking-wide text-slate-400">
                 {horizon}-year net savings
               </div>
-              <div className="mt-1 text-2xl font-bold text-emerald-700">
+              <div className="mt-1 text-2xl font-bold text-[var(--good)]">
                 {fmtEur(s.net_savings)}
               </div>
             </div>
@@ -87,16 +88,20 @@ export default function PrintReport() {
               <div className="mt-1 text-2xl font-bold">{fmtMonths(s.payback_months)}</div>
             </div>
           </div>
-          <p className="mt-6 text-xs text-slate-400">
-            Generated {generated} · Analysis version {analysis.version_seq} · Engine v
-            {analysis.engine_version} · All figures EUR
-          </p>
+          <div className="mt-6 border-t border-slate-200 pt-3 text-xs text-slate-400">
+            <span className="font-semibold text-slate-500">
+              Idira by Palo Alto Networks
+            </span>{" "}
+            | {analysis.name} | Value Report · Generated {generated} · Analysis version{" "}
+            {analysis.version_seq} · Engine v{analysis.engine_version} · All figures EUR
+          </div>
         </div>
       </div>
 
       {/* Executive summary */}
       <div className="page-break">
-        <h2 className="mb-4 text-2xl font-bold">Executive summary</h2>
+        <h2 className="mb-2 mt-8 text-2xl font-extrabold">Executive summary</h2>
+        <div className="idira-rule mb-4" />
         <p className="mb-6 text-sm leading-relaxed text-slate-600">
           Migrating CyberArk PAM from the self-hosted estate to CyberArk SaaS (Privilege
           Cloud) saves <strong>{fmtEur(s.net_savings)}</strong> over {horizon} years — a{" "}
@@ -133,7 +138,8 @@ export default function PrintReport() {
 
       {/* Savings breakdown + benefits */}
       <div className="page-break">
-        <h2 className="mb-4 text-2xl font-bold">Where the value comes from</h2>
+        <h2 className="mb-2 mt-8 text-2xl font-extrabold">Where the value comes from</h2>
+        <div className="idira-rule mb-4" />
         <div className="avoid-break rounded-xl border border-slate-200 p-4">
           <WaterfallChart
             categories={s.categories}
@@ -150,7 +156,8 @@ export default function PrintReport() {
 
       {/* Assumptions appendix */}
       <div className="page-break">
-        <h2 className="mb-4 text-2xl font-bold">Appendix — assumptions</h2>
+        <h2 className="mb-2 mt-8 text-2xl font-extrabold">Appendix — assumptions</h2>
+        <div className="idira-rule mb-4" />
         <div className="grid grid-cols-2 gap-6 text-sm">
           <AssumptionTable
             title="Licensing & subscription"

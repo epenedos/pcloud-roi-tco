@@ -71,26 +71,26 @@ export function BenefitsPanel({
               </tr>
             </tbody>
           </table>
-          <div className="mt-3 grid grid-cols-3 gap-3 rounded-lg bg-indigo-50 p-3 text-center">
+          <div className="mt-3 grid grid-cols-3 gap-3 rounded-lg bg-[var(--brand-tint)] p-3 text-center">
             <div>
-              <div className="text-[11px] uppercase tracking-wide text-indigo-500">
+              <div className="text-[11px] uppercase tracking-wide text-[var(--brand-500)]">
                 Total value
               </div>
-              <div className="font-bold text-indigo-900" data-testid="total-value">
+              <div className="font-bold text-[var(--brand-1000)]" data-testid="total-value">
                 {fmtEur(b.total_value)}
               </div>
             </div>
             <div>
-              <div className="text-[11px] uppercase tracking-wide text-indigo-500">
+              <div className="text-[11px] uppercase tracking-wide text-[var(--brand-500)]">
                 Value ROI
               </div>
-              <div className="font-bold text-indigo-900">{fmtPct(b.value_roi_pct)}</div>
+              <div className="font-bold text-[var(--brand-1000)]">{fmtPct(b.value_roi_pct)}</div>
             </div>
             <div>
-              <div className="text-[11px] uppercase tracking-wide text-indigo-500">
+              <div className="text-[11px] uppercase tracking-wide text-[var(--brand-500)]">
                 Value payback
               </div>
-              <div className="font-bold text-indigo-900">
+              <div className="font-bold text-[var(--brand-1000)]">
                 {fmtMonths(b.value_payback_months)}
               </div>
             </div>

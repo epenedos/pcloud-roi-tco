@@ -8,23 +8,22 @@ import PrintReport from "./pages/PrintReport";
 function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-30 bg-[var(--brand-900)] text-white shadow-md">
+      <header className="sticky top-0 z-30 bg-[var(--brand-1000)] text-white shadow-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link to="/" className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--brand-500)] font-bold">
-              ⛨
-            </div>
+            <span className="text-lg font-extrabold tracking-[0.18em]">IDIRA</span>
+            <span className="hidden h-6 w-px bg-white/30 sm:block" />
             <div>
-              <div className="text-lg font-semibold leading-tight">
-                CyberArk PAM Value Analyzer
+              <div className="text-base font-semibold leading-tight">
+                Modern PAM Migration Value
               </div>
-              <div className="text-xs text-blue-200">
+              <div className="text-xs text-[var(--brand-0)]">
                 On-Prem → SaaS · TCO &amp; ROI · EUR
               </div>
             </div>
           </Link>
           <nav className="flex items-center gap-4 text-sm">
-            <Link to="/methodology" className="text-blue-200 hover:text-white">
+            <Link to="/methodology" className="text-[var(--brand-0)] hover:text-white">
               Methodology
             </Link>
           </nav>
@@ -46,7 +45,7 @@ function Footer() {
   }, []);
   return (
     <footer className="mx-auto max-w-7xl px-6 pb-6 text-center text-xs text-slate-400">
-      CyberArk PAM Value Analyzer
+      Idira · Modern PAM Migration Value
       {versions && ` · v${versions.app} · engine v${versions.engine}`} · figures are
       illustrative benchmarks unless replaced with customer data
     </footer>

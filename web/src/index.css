@@ -1,15 +1,43 @@
 @import "tailwindcss";
 
+/* IDIRA by Palo Alto Networks — brand tokens extracted from the 2026 one-pager
+   template (IDML swatches). Idira ramp drives the UI; Parent (PANW orange),
+   Cortex (green) and Prisma (cyan) supply the data-viz entity colors. */
 :root {
-  --brand-900: #0b2447;
-  --brand-700: #19376d;
-  --brand-500: #2563eb;
-  --brand-100: #dbeafe;
-  --accent-teal: #0d9488;
-  --accent-amber: #d97706;
+  --brand-1000: #061d63; /* Idira_1000 — header band, report band */
+  --brand-750: #173eb8;  /* Idira_750 */
+  --brand-500: #265bff;  /* Idira_500 — primary actions, accents */
+  --brand-250: #6186fc;  /* Idira_250 */
+  --brand-0: #adc0fc;    /* Idira_0 — light fills */
+  --brand-tint: #eef2ff; /* derived light tint for chips/panels */
+
+  --good: #0f9347;       /* Cortex_750 — positive figures */
+  --bad: #aa251b;        /* Unit42_750 — negative figures */
+
+  /* legacy aliases used across components */
+  --brand-900: var(--brand-1000);
+  --brand-700: var(--brand-750);
+  --brand-100: var(--brand-0);
 }
 
 body {
   @apply bg-slate-50 text-slate-900 antialiased;
-  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* IDIRA signature rule: thin gray line with a solid brand segment at the right */
+.idira-rule {
+  position: relative;
+  height: 1px;
+  background: #d7dbe8;
+}
+.idira-rule::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: -2px;
+  height: 5px;
+  width: 72px;
+  border-radius: 3px;
+  background: var(--brand-500);
 }
