@@ -94,6 +94,25 @@ test("benefit toggles update the value view; disabling all hides the panel", asy
   await expect(page.getByTestId("benefits-table")).toBeHidden();
 });
 
+test("Export PDF button downloads a boardroom PDF", async ({ page }) => {
+  await page.goto("/");
+  await page.getByTestId("new-analysis").click();
+  await page.getByTestId("create-name").fill(`PDF ${stamp}`);
+  await page.getByTestId("create-passwords").fill("5000");
+  await page.getByTestId("create-submit").click();
+  await page.waitForURL(/\/analysis\//);
+
+  const downloadPromise = page.waitForEvent("download", { timeout: 30_000 });
+  await page.getByTestId("export-pdf").click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(/^PAM-ROI-PDF_\d+-\d{4}-\d{2}-\d{2}\.pdf$/);
+  const path = await download.path();
+  const fs = await import("node:fs");
+  const buf = fs.readFileSync(path!);
+  expect(buf.subarray(0, 5).toString()).toBe("%PDF-");
+  expect(buf.length).toBeGreaterThan(30_000);
+});
+
 test("print report route renders cover and figures", async ({ page }) => {
   await page.goto("/");
   await page.getByTestId("new-analysis").click();

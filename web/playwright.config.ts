@@ -17,7 +17,7 @@ export default defineConfig({
   webServer: [
     {
       command:
-        "cd ../api && PAMROI_DATABASE_URL=sqlite:///$(mktemp -d)/e2e.db sh -c '.venv/bin/python -m alembic upgrade head && .venv/bin/python -m uvicorn app.main:app --port 8000'",
+        "cd ../api && PAMROI_DATABASE_URL=sqlite:///$(mktemp -d)/e2e.db PAMROI_WEB_BASE_URL=http://localhost:4173 PAMROI_CHROMIUM_PATH=${PW_CHROMIUM_PATH:-/opt/pw-browsers/chromium} sh -c '.venv/bin/python -m alembic upgrade head && .venv/bin/python -m uvicorn app.main:app --port 8000'",
       url: "http://localhost:8000/api/health",
       reuseExistingServer: false,
       timeout: 60_000,

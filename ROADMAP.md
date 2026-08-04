@@ -44,7 +44,7 @@ Rules:
 | M3 | Input experience (wizard + t-shirt sizing) | ✅ Done |
 | M4 | Executive results dashboard | ✅ Done |
 | M5 | SaaS benefits module | ✅ Done |
-| M6 | PDF report export | ⬜ Not started |
+| M6 | PDF report export | ✅ Done |
 | M7 | Executive polish & demo readiness | ⬜ Not started |
 | M8 | Hardening & v1 release | ⬜ Not started |
 
@@ -236,19 +236,19 @@ guard tests green; UI copy reviewed against CALC-SPEC §1H.
 
 Goal: one click → boardroom-ready PDF.
 
-- [ ] **M6-T1** Print-optimized report route in `web` (`/report/:id/print`):
+- [x] **M6-T1** Print-optimized report route in `web` (`/report/:id/print`):
       cover page (analysis name, customer, date, prepared-by), executive summary
       with KPI band, charts, benefits panel, assumption appendix, methodology &
       disclaimer page. A4, page breaks controlled, no app chrome.
-- [ ] **M6-T2** `api` PDF service: Playwright + Chromium in the api image renders
+- [x] **M6-T2** `api` PDF service: Playwright + Chromium in the api image renders
       the print route to PDF; `POST /api/analyses/{id}/report` returns the file;
       generation is async-safe (locks or queue) and < 15 s.
-- [ ] **M6-T3** Download UX: "Export PDF" button with progress state; filename
+- [x] **M6-T3** Download UX: "Export PDF" button with progress state; filename
       `PAM-ROI-<analysis-name>-<date>.pdf`.
-- [ ] **M6-T4** Report snapshots: report renders from the stored results snapshot
+- [x] **M6-T4** Report snapshots: report renders from the stored results snapshot
       (specific version), stamped with engine version and generation date, so a PDF
       regenerated later matches the original analysis.
-- [ ] **M6-T5** e2e test: generate PDF for golden analysis; assert page count,
+- [x] **M6-T5** e2e test: generate PDF for golden analysis; assert page count,
       presence of key strings (net savings figure), and file size sanity.
 
 **Definition of Done**: PDF of the golden analysis is visually reviewed (charts

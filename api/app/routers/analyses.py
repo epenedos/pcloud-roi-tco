@@ -1,6 +1,7 @@
+import re
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
@@ -226,6 +227,25 @@ def get_version(
         if v.id == version_id:
             return _full(analysis, v)
     raise HTTPException(404, "Version not found")
+
+
+@router.post("/{analysis_id}/report")
+async def generate_report(analysis_id: str, session: Session = Depends(get_session)):
+    from app.reports import render_report_pdf
+
+    analysis = _get_or_404(session, analysis_id)
+    try:
+        pdf = await render_report_pdf(analysis.id)
+    except Exception as exc:  # surface render failures as a clean API error
+        raise HTTPException(502, f"PDF generation failed: {exc}") from exc
+    safe_name = re.sub(r"[^\w-]+", "_", analysis.name).strip("_") or "analysis"
+    date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    filename = f"PAM-ROI-{safe_name}-{date}.pdf"
+    return Response(
+        content=pdf,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
 
 
 @router.get("/stats/count")
