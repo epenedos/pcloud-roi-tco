@@ -41,9 +41,9 @@ Rules:
 | M0 | Foundations & scaffolding | ✅ Done |
 | M1 | Calculation engine (Excel parity) | ✅ Done |
 | M2 | Persistence & analysis management API | ✅ Done |
-| M3 | Input experience (wizard + t-shirt sizing) | ⬜ Not started |
-| M4 | Executive results dashboard | ⬜ Not started |
-| M5 | SaaS benefits module | ⬜ Not started |
+| M3 | Input experience (wizard + t-shirt sizing) | ✅ Done |
+| M4 | Executive results dashboard | ✅ Done |
+| M5 | SaaS benefits module | ✅ Done |
 | M6 | PDF report export | ⬜ Not started |
 | M7 | Executive polish & demo readiness | ⬜ Not started |
 | M8 | Hardening & v1 release | ⬜ Not started |
@@ -165,24 +165,24 @@ Goal: unlimited named analyses, all data kept.
 Goal: a guided, credible input flow a presales engineer can complete live in front of
 a customer.
 
-- [ ] **M3-T1** Analysis library home: card/list of analyses (name, customer, date,
+- [x] **M3-T1** Analysis library home: card/list of analyses (name, customer, date,
       headline savings & ROI badges), create-new dialog (name + customer +
       number of passwords), duplicate/rename/delete actions, empty state.
-- [ ] **M3-T2** Wizard shell with sections mirroring CALC-SPEC: Scope & Sizing,
+- [x] **M3-T2** Wizard shell with sections mirroring CALC-SPEC: Scope & Sizing,
       Licensing, Inventory, Unit Rates, Operations, Migration, Connectors,
       Parameters, Benefits. Progress indicator, per-field inline validation,
       autosave (debounced update → API).
-- [ ] **M3-T3** Scope & Sizing step: `num_passwords` input with live t-shirt size
+- [x] **M3-T3** Scope & Sizing step: `num_passwords` input with live t-shirt size
       badge (Small / Mid-Range / Large / Very Large) and a visual scale; changing
       size proposes re-applying default inventory with an explicit confirm
       (per CALC-SPEC — never silently overwrite user edits).
-- [ ] **M3-T4** Inventory editor: editable grid (qty, vCPU, RAM, storage, OS, role),
+- [x] **M3-T4** Inventory editor: editable grid (qty, vCPU, RAM, storage, OS, role),
       add/remove rows, live per-row annual cost preview via `/api/calc/preview`,
       "reset to size defaults" action.
-- [ ] **M3-T5** Remaining input steps with sensible grouping, unit suffixes (€, %,
+- [x] **M3-T5** Remaining input steps with sensible grouping, unit suffixes (€, %,
       GB, FTE), tooltips explaining each assumption (text lifted from workbook
       annotations, e.g. "salary + overhead", "environment-level, once").
-- [ ] **M3-T6** Live mini-summary sidebar: 3-yr net savings, ROI, payback update as
+- [x] **M3-T6** Live mini-summary sidebar: 3-yr net savings, ROI, payback update as
       inputs change (debounced preview call), so the story builds while typing.
 
 **Definition of Done**: create → complete wizard → values persist across reload;
@@ -192,20 +192,20 @@ t-shirt boundary behavior verified in a Playwright e2e test (999 vs 1000 passwor
 
 Goal: the money screen — instantly legible to a CIO/CFO.
 
-- [ ] **M4-T1** KPI headline band: 3-Year Net Savings, ROI %, Payback (months),
+- [x] **M4-T1** KPI headline band: 3-Year Net Savings, ROI %, Payback (months),
       Annual Run-Rate Saving, NPV — large numerals, delta arrows, EUR formatting
       (`€515,593`, `78.2%`, `4.4 months`).
-- [ ] **M4-T2** TCO comparison chart: grouped/stacked bars On-Prem vs SaaS by cost
+- [x] **M4-T2** TCO comparison chart: grouped/stacked bars On-Prem vs SaaS by cost
       category (Licence, Infrastructure, Operations, Upgrades, Migration) with a
       savings column; follows the repo dataviz conventions (accessible palette,
       light/dark safe).
-- [ ] **M4-T3** Cash-flow chart: yearly On-Prem vs SaaS cost bars + cumulative
+- [x] **M4-T3** Cash-flow chart: yearly On-Prem vs SaaS cost bars + cumulative
       savings line with break-even marker at the payback point.
-- [ ] **M4-T4** Cost-category waterfall: On-Prem TCO → savings per category →
+- [x] **M4-T4** Cost-category waterfall: On-Prem TCO → savings per category →
       SaaS TCO, the single most persuasive C-level visual.
-- [ ] **M4-T5** Benefits value panel (renders once M5 lands; hidden if all benefits
+- [x] **M4-T5** Benefits value panel (renders once M5 lands; hidden if all benefits
       disabled): hard savings vs total-value bar, benefit line items with amounts.
-- [ ] **M4-T6** Detail tables (collapsible "for the analysts" section): full On-Prem
+- [x] **M4-T6** Detail tables (collapsible "for the analysts" section): full On-Prem
       build-up per component, SaaS build-up, per-year matrices — mirroring the
       workbook tabs so finance can audit every number.
 
@@ -217,16 +217,16 @@ screenshot check in e2e.
 
 Goal: quantify SaaS value beyond cost savings, credibly and transparently.
 
-- [ ] **M5-T1** Benefits wizard step: card per benefit (B1–B6) with toggle,
+- [x] **M5-T1** Benefits wizard step: card per benefit (B1–B6) with toggle,
       editable assumptions, plain-language explanation of the formula and its
       rationale, and live computed annual value.
-- [ ] **M5-T2** Wire benefits into results: dual headline blocks ("Hard cost
+- [x] **M5-T2** Wire benefits into results: dual headline blocks ("Hard cost
       savings" vs "Total value incl. quantified benefits"), value ROI, value
       payback, value NPV (CALC-SPEC §5).
-- [ ] **M5-T3** Methodology transparency: every benefit shows its formula and
+- [x] **M5-T3** Methodology transparency: every benefit shows its formula and
       sources footnote in UI and PDF; disclaimer that defaults are illustrative
       benchmarks to be replaced with customer figures.
-- [ ] **M5-T4** e2e test: toggling a benefit updates totals; disabling all benefits
+- [x] **M5-T4** e2e test: toggling a benefit updates totals; disabling all benefits
       collapses the value view back to TCO-only.
 
 **Definition of Done**: benefits fully editable/toggleable; anti-double-counting

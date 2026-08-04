@@ -1,1 +1,1 @@
-{"root":["./src/App.tsx","./src/main.tsx"],"version":"5.9.3"}
+{"root":["./src/App.tsx","./src/api.ts","./src/format.ts","./src/main.tsx","./src/types.ts","./src/charts/CashflowChart.tsx","./src/charts/CategoryComparisonChart.tsx","./src/charts/ValueChart.tsx","./src/charts/WaterfallChart.tsx","./src/charts/palette.ts","./src/components/InventoryEditor.tsx","./src/components/KpiBand.tsx","./src/components/fields.tsx","./src/pages/AnalysisWorkspace.tsx","./src/pages/Dashboard.tsx","./src/pages/Library.tsx","./src/pages/PrintReport.tsx"],"version":"5.9.3"}

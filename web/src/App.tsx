@@ -1,9 +1,12 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
+import Library from "./pages/Library";
+import AnalysisWorkspace from "./pages/AnalysisWorkspace";
+import PrintReport from "./pages/PrintReport";
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen">
-      <header className="bg-[var(--brand-900)] text-white shadow-md">
+      <header className="sticky top-0 z-30 bg-[var(--brand-900)] text-white shadow-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link to="/" className="flex items-center gap-3">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--brand-500)] font-bold">
@@ -26,17 +29,20 @@ function Shell({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const location = useLocation();
+  const isPrint = location.pathname.startsWith("/report/");
+  if (isPrint) {
+    return (
+      <Routes>
+        <Route path="/report/:id/print" element={<PrintReport />} />
+      </Routes>
+    );
+  }
   return (
     <Shell>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="rounded-xl border border-slate-200 bg-white p-10 text-center text-slate-500">
-              Analysis library coming in M3.
-            </div>
-          }
-        />
+        <Route path="/" element={<Library />} />
+        <Route path="/analysis/:id" element={<AnalysisWorkspace />} />
       </Routes>
     </Shell>
   );
