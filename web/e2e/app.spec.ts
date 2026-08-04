@@ -32,9 +32,9 @@ test("golden analysis dashboard shows workbook headline figures", async ({ page 
   await page.getByTestId("create-submit").click();
 
   await page.getByTestId("tab-dashboard").click();
-  await expect(page.getByTestId("kpi-net-savings")).toHaveText("€515,593");
-  await expect(page.getByTestId("kpi-roi")).toHaveText("78.2%");
-  await expect(page.getByTestId("kpi-payback")).toContainText("4.4 months");
+  await expect(page.getByTestId("kpi-net-savings")).toHaveText("€530,437");
+  await expect(page.getByTestId("kpi-roi")).toHaveText("80.4%");
+  await expect(page.getByTestId("kpi-payback")).toContainText("4.3 months");
   await expect(page.getByTestId("chart-categories")).toBeVisible();
   await expect(page.getByTestId("chart-cashflow")).toBeVisible();
   await expect(page.getByTestId("chart-waterfall")).toBeVisible();
@@ -52,15 +52,15 @@ test("input edits autosave and update the live summary", async ({ page }) => {
   await page.getByTestId("create-passwords").fill("5000");
   await page.getByTestId("create-submit").click();
 
-  await expect(page.getByTestId("live-net-savings")).toHaveText("€515,593");
+  await expect(page.getByTestId("live-net-savings")).toHaveText("€530,437");
   await page.getByTestId("saas-subscription").fill("140000");
-  await expect(page.getByTestId("live-net-savings")).toHaveText("€546,502", {
+  await expect(page.getByTestId("live-net-savings")).toHaveText("€561,346", {
     timeout: 10_000,
   });
 
   // persists across reload
   await page.reload();
-  await expect(page.getByTestId("live-net-savings")).toHaveText("€546,502");
+  await expect(page.getByTestId("live-net-savings")).toHaveText("€561,346");
 });
 
 test("benefit toggles update the value view; disabling all hides the panel", async ({ page }) => {
@@ -125,6 +125,6 @@ test("print report route renders cover and figures", async ({ page }) => {
   await page.goto(`/report/${id}/print`);
   await expect(page.getByTestId("print-report")).toBeVisible();
   await expect(page.getByText("On-Prem → SaaS Business Case")).toBeVisible();
-  await expect(page.getByText("€515,593").first()).toBeVisible();
+  await expect(page.getByText("€530,437").first()).toBeVisible();
   await expect(page.getByText("Methodology & disclaimer")).toBeVisible();
 });

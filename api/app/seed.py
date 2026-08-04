@@ -8,7 +8,7 @@ from sqlalchemy import select
 from app.db import Base, SessionLocal, engine
 from app.engine import ENGINE_VERSION
 from app.engine.calc import calculate
-from app.engine.defaults import default_inputs_dict
+from app.engine.defaults import default_inputs_dict, workbook_inventory
 from app.engine.models import CalcInputs
 from app.models_db import Analysis, AnalysisVersion
 
@@ -38,13 +38,15 @@ def main():
     Base.metadata.create_all(engine)
     session = SessionLocal()
     try:
+        workbook = default_inputs_dict(num_passwords=5000)
+        workbook["inventory"] = workbook_inventory()  # frozen: no PVWA row
         _seed(
             session,
             "Demo — Workbook example (Mid-Range)",
             "ACME Industries",
             "Reference case matching the PAM_TCO_ROI.xlsx workbook example: "
             "5,000 passwords, Mid-Range estate, default industry rates.",
-            default_inputs_dict(num_passwords=5000),
+            workbook,
         )
 
         very_large = default_inputs_dict(num_passwords=250_000)

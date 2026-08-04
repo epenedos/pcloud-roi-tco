@@ -12,7 +12,7 @@ def test_full_lifecycle(client):
     aid = body["id"]
     assert body["version_seq"] == 1
     assert body["results"]["tshirt_size"] == "MID_RANGE"
-    assert round(body["results"]["summary"]["net_savings"]) == 515593
+    assert round(body["results"]["summary"]["net_savings"]) == 530437  # incl. PVWA
 
     # duplicate name rejected
     resp = client.post("/api/analyses", json={"name": "ACME Corp"})
@@ -22,7 +22,7 @@ def test_full_lifecycle(client):
     listing = client.get("/api/analyses").json()
     assert len([a for a in listing if a["id"] == aid]) == 1
     entry = next(a for a in listing if a["id"] == aid)
-    assert round(entry["headline"]["net_savings"]) == 515593
+    assert round(entry["headline"]["net_savings"]) == 530437
     assert entry["headline"]["tshirt_size"] == "MID_RANGE"
 
     # edit inputs -> new version, recalculated
@@ -32,7 +32,7 @@ def test_full_lifecycle(client):
     assert resp.status_code == 200
     v2 = resp.json()
     assert v2["version_seq"] == 2
-    assert v2["results"]["summary"]["net_savings"] > 515593
+    assert v2["results"]["summary"]["net_savings"] > 530437
 
     # version history kept
     versions = client.get(f"/api/analyses/{aid}/versions").json()
@@ -40,7 +40,7 @@ def test_full_lifecycle(client):
     v1 = client.get(
         f"/api/analyses/{aid}/versions/{versions[0]['version_id']}"
     ).json()
-    assert round(v1["results"]["summary"]["net_savings"]) == 515593
+    assert round(v1["results"]["summary"]["net_savings"]) == 530437
 
     # rename
     resp = client.patch(f"/api/analyses/{aid}", json={"name": "ACME Corp 2026"})
