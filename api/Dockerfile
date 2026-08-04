@@ -1,4 +1,7 @@
-FROM python:3.12-slim
+# bookworm pin: Playwright 1.49 has native dependency lists for Debian 12 but
+# not Debian 13 (trixie), where its Ubuntu fallback references obsolete font
+# packages and `playwright install --with-deps` fails.
+FROM python:3.12-slim-bookworm
 
 ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 \
     PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
