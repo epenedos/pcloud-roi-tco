@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "num_passwords": 5000,
+    "licensing": {
+      "onprem_renewal": 180000,
+      "onprem_uplift": 0.05,
+      "saas_subscription": 150000,
+      "saas_uplift": 0.03
+    },
+    "rates": {
+      "rate_vcpu": 120,
+      "rate_ram": 18,
+      "rate_storage": 0.6,
+      "rate_windows": 350,
+      "rate_linux": 700,
+      "rate_backup": 180,
+      "rate_facilities": 600,
+      "rate_network": 4000,
+      "rate_hsm": 0
+    },
+    "ops": {
+      "fte_cost": 95000,
+      "onprem_fte": 1.5,
+      "saas_fte": 0.4,
+      "upgrade_cost": 30000,
+      "upgrade_count": 2,
+      "dr_test_cost": 8000
+    },
+    "migration": {
+      "mig_ps": 45000,
+      "mig_internal": 20000,
+      "mig_training": 6000
+    },
+    "connectors": {
+      "conn_qty": 2,
+      "conn_vcpu": 4,
+      "conn_ram": 8,
+      "conn_storage": 100
+    },
+    "params": {
+      "horizon": 3,
+      "discount_rate": 0.08
+    },
+    "benefits": {
+      "b1": { "enabled": true, "breach_cost": 4500000, "breach_prob": 0.05, "risk_reduction": 0.15 },
+      "b2": { "enabled": true, "downtime_hours_per_upgrade": 8, "downtime_cost_hour": 5000 },
+      "b3": { "enabled": true, "months_earlier": 3 },
+      "b4": { "enabled": true, "audit_hours_saved": 120, "audit_hourly_rate": 120 },
+      "b5": { "enabled": true, "refresh_capex": 90000, "refresh_cycle_years": 5 },
+      "b6": { "enabled": true, "insurance_premium": 150000, "premium_reduction": 0.05 }
+    }
+  },
+  "tshirt_inventories": {
+    "SMALL": [
+      { "name": "Vault (Primary Cluster)", "qty": 1, "vcpu_each": 8, "ram_gb_each": 32, "storage_gb_each": 500, "os": "Windows", "role": "Digital Vault" },
+      { "name": "Vault DR", "qty": 1, "vcpu_each": 8, "ram_gb_each": 32, "storage_gb_each": 500, "os": "Windows", "role": "Disaster Recovery" },
+      { "name": "CPM", "qty": 1, "vcpu_each": 4, "ram_gb_each": 8, "storage_gb_each": 100, "os": "Windows", "role": "Central Policy Manager" },
+      { "name": "PSM", "qty": 1, "vcpu_each": 8, "ram_gb_each": 16, "storage_gb_each": 250, "os": "Windows", "role": "Privileged Session Mgr" },
+      { "name": "PSMP", "qty": 1, "vcpu_each": 4, "ram_gb_each": 8, "storage_gb_each": 100, "os": "Linux", "role": "PSM for SSH" },
+      { "name": "PTA", "qty": 0, "vcpu_each": 8, "ram_gb_each": 32, "storage_gb_each": 1000, "os": "Linux", "role": "Threat Analytics" }
+    ],
+    "MID_RANGE": [
+      { "name": "Vault (Primary Cluster)", "qty": 2, "vcpu_each": 8, "ram_gb_each": 32, "storage_gb_each": 500, "os": "Windows", "role": "Digital Vault" },
+      { "name": "Vault DR", "qty": 1, "vcpu_each": 8, "ram_gb_each": 32, "storage_gb_each": 500, "os": "Windows", "role": "Disaster Recovery" },
+      { "name": "CPM", "qty": 2, "vcpu_each": 4, "ram_gb_each": 8, "storage_gb_each": 100, "os": "Windows", "role": "Central Policy Manager" },
+      { "name": "PSM", "qty": 3, "vcpu_each": 8, "ram_gb_each": 16, "storage_gb_each": 250, "os": "Windows", "role": "Privileged Session Mgr" },
+      { "name": "PSMP", "qty": 2, "vcpu_each": 4, "ram_gb_each": 8, "storage_gb_each": 100, "os": "Linux", "role": "PSM for SSH" },
+      { "name": "PTA", "qty": 1, "vcpu_each": 8, "ram_gb_each": 32, "storage_gb_each": 1000, "os": "Linux", "role": "Threat Analytics" }
+    ],
+    "LARGE": [
+      { "name": "Vault (Primary Cluster)", "qty": 2, "vcpu_each": 16, "ram_gb_each": 64, "storage_gb_each": 1000, "os": "Windows", "role": "Digital Vault" },
+      { "name": "Vault DR", "qty": 2, "vcpu_each": 16, "ram_gb_each": 64, "storage_gb_each": 1000, "os": "Windows", "role": "Disaster Recovery" },
+      { "name": "CPM", "qty": 3, "vcpu_each": 8, "ram_gb_each": 16, "storage_gb_each": 100, "os": "Windows", "role": "Central Policy Manager" },
+      { "name": "PSM", "qty": 6, "vcpu_each": 8, "ram_gb_each": 32, "storage_gb_each": 500, "os": "Windows", "role": "Privileged Session Mgr" },
+      { "name": "PSMP", "qty": 3, "vcpu_each": 8, "ram_gb_each": 16, "storage_gb_each": 100, "os": "Linux", "role": "PSM for SSH" },
+      { "name": "PTA", "qty": 1, "vcpu_each": 16, "ram_gb_each": 64, "storage_gb_each": 2000, "os": "Linux", "role": "Threat Analytics" }
+    ],
+    "VERY_LARGE": [
+      { "name": "Vault (Primary Cluster)", "qty": 2, "vcpu_each": 32, "ram_gb_each": 128, "storage_gb_each": 2000, "os": "Windows", "role": "Digital Vault" },
+      { "name": "Vault DR", "qty": 2, "vcpu_each": 32, "ram_gb_each": 128, "storage_gb_each": 2000, "os": "Windows", "role": "Disaster Recovery" },
+      { "name": "CPM", "qty": 4, "vcpu_each": 8, "ram_gb_each": 16, "storage_gb_each": 150, "os": "Windows", "role": "Central Policy Manager" },
+      { "name": "PSM", "qty": 10, "vcpu_each": 16, "ram_gb_each": 64, "storage_gb_each": 500, "os": "Windows", "role": "Privileged Session Mgr" },
+      { "name": "PSMP", "qty": 4, "vcpu_each": 8, "ram_gb_each": 16, "storage_gb_each": 150, "os": "Linux", "role": "PSM for SSH" },
+      { "name": "PTA", "qty": 2, "vcpu_each": 16, "ram_gb_each": 64, "storage_gb_each": 2000, "os": "Linux", "role": "Threat Analytics" }
+    ]
+  }
+}

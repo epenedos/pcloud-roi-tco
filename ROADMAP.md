@@ -39,7 +39,7 @@ Rules:
 | Milestone | Title | Status |
 |---|---|---|
 | M0 | Foundations & scaffolding | ✅ Done |
-| M1 | Calculation engine (Excel parity) | ⬜ Not started |
+| M1 | Calculation engine (Excel parity) | ✅ Done |
 | M2 | Persistence & analysis management API | ⬜ Not started |
 | M3 | Input experience (wizard + t-shirt sizing) | ⬜ Not started |
 | M4 | Executive results dashboard | ⬜ Not started |
@@ -114,27 +114,27 @@ the shell; `curl localhost:8080/api/health` returns `{"status":"ok","db":"up"}`;
 
 Goal: a pure, fully-tested Python engine implementing `docs/CALC-SPEC.md`.
 
-- [ ] **M1-T1** Typed input model (Pydantic): sections A–H incl. `num_passwords`,
+- [x] **M1-T1** Typed input model (Pydantic): sections A–H incl. `num_passwords`,
       component inventory rows, benefits config; strict validation (non-negative,
       percentage bounds, horizon 1–10).
-- [ ] **M1-T2** Defaults registry: JSON config with workbook defaults + t-shirt
+- [x] **M1-T2** Defaults registry: JSON config with workbook defaults + t-shirt
       inventory matrix from CALC-SPEC §A2; loader with schema check.
-- [ ] **M1-T3** T-shirt sizing: `size_for(num_passwords)` + `default_inventory(size)`
+- [x] **M1-T3** T-shirt sizing: `size_for(num_passwords)` + `default_inventory(size)`
       exactly per spec thresholds (<1,000 / 1,000–20,000 / 20,000–100,000 / >100,000).
       Unit tests on all boundaries (999, 1000, 20000, 20001, 100000, 100001).
-- [ ] **M1-T4** On-Prem TCO calculator: per-component infra build-up, ops, yearly
+- [x] **M1-T4** On-Prem TCO calculator: per-component infra build-up, ops, yearly
       build with licence uplift compounding and annualised upgrades (CALC-SPEC §2).
-- [ ] **M1-T5** SaaS TCO calculator: connector infra, subscription uplift, ops,
+- [x] **M1-T5** SaaS TCO calculator: connector infra, subscription uplift, ops,
       Year-1 migration (CALC-SPEC §3).
-- [ ] **M1-T6** ROI summary: net savings, ROI%, payback months (workbook formula incl.
+- [x] **M1-T6** ROI summary: net savings, ROI%, payback months (workbook formula incl.
       the ≤0 guard), run-rate, per-year and cumulative savings, category comparison
       table, NPV (Excel convention). **Golden parity test**: workbook example inputs
       reproduce every value in CALC-SPEC §6 to the cent / 6 decimal places.
-- [ ] **M1-T7** Benefits engine (CALC-SPEC §1H + §5): per-benefit annual values,
+- [x] **M1-T7** Benefits engine (CALC-SPEC §1H + §5): per-benefit annual values,
       toggles, benefits-adjusted totals (total value, value ROI, value payback, NPV).
       Unit tests per benefit + double-counting guard test (benefits view never
       re-includes FTE or upgrade project cost).
-- [ ] **M1-T8** `POST /api/calc/preview`: stateless endpoint — full input set in,
+- [x] **M1-T8** `POST /api/calc/preview`: stateless endpoint — full input set in,
       full result set out (used later for live recalculation in the wizard).
 
 **Definition of Done**: `pytest api/tests` green including golden parity; engine has
@@ -318,4 +318,5 @@ integration · SSO · localization beyond EUR/English.
 | 2026-08-04 | Mid-Range default inventory = workbook example inventory, keeping golden parity at 5,000 passwords. |
 | 2026-08-04 | Benefits shown separately from hard savings; both ROI views always visible (credibility with CFOs). |
 | 2026-08-04 | Payback formula kept exactly as workbook (SaaS Y1 total ÷ steady-state Y2 saving × 12), incl. its ≤0 guard. |
+| 2026-08-04 | Golden-parity finding: the workbook's payback numerator is the one-time migration investment ('SaaS TCO'!C17 = €71,000), not the SaaS Year-1 total. CALC-SPEC §4/§5 corrected; engine matches the workbook (4.36 months). |
 | 2026-08-04 | Build-sandbox limitation: container registries' blob CDNs are blocked by egress policy, so `docker compose up` cannot be exercised in the build environment. Verification is done natively (pytest, vite build, headless-Chromium e2e, SQLite-backed test runs) plus `docker compose config` validation; the compose stack targets standard environments and Postgres remains the production DB. |

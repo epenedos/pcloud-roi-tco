@@ -192,9 +192,11 @@ saas_tco        = Σ_y saas_total[y]
 net_savings   = onprem_tco − saas_tco
 roi_pct       = net_savings / saas_tco
 run_rate      = onprem_total[2] − saas_total[2]           (Year-2 delta, steady state)
+migration_y1  = mig_ps + mig_internal + mig_training
 payback_months= 0 if run_rate ≤ 0
-                else saas_total[1] / run_rate × 12
-                (workbook: SaaS Year-1 total incl. migration ÷ steady-state annual saving × 12)
+                else migration_y1 / run_rate × 12
+                (workbook cell 'SaaS TCO'!C17: one-time migration investment ÷
+                 steady-state annual saving × 12 — months to recoup the migration)
 annual_saving[y]     = onprem_total[y] − saas_total[y]
 cumulative_saving[y] = Σ_{i≤y} annual_saving[i]
 npv_savings   = NPV(discount_rate, annual_saving[1..horizon])
@@ -214,7 +216,7 @@ total_benefits     = Σ_y benefits_annual[y]
 
 total_value        = net_savings + total_benefits
 value_roi_pct      = total_value / saas_tco
-value_payback_months = saas_total[1] / (run_rate + steady_state_benefits) × 12   (if > 0)
+value_payback_months = migration_y1 / (run_rate + steady_state_benefits) × 12   (if > 0)
 npv_total_value    = NPV(discount_rate, annual_saving[y] + benefits_annual[y])
 ```
 
