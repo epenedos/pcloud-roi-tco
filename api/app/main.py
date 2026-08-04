@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 
 from app.db import db_is_up
-from app.routers import calc
+from app.routers import analyses, calc
 
 app = FastAPI(title="CyberArk PAM Value Analyzer API", version="1.0.0")
 app.include_router(calc.router)
+app.include_router(analyses.router)
 
 
 @app.get("/api/health")

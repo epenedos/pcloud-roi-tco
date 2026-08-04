@@ -40,7 +40,7 @@ Rules:
 |---|---|---|
 | M0 | Foundations & scaffolding | ✅ Done |
 | M1 | Calculation engine (Excel parity) | ✅ Done |
-| M2 | Persistence & analysis management API | ⬜ Not started |
+| M2 | Persistence & analysis management API | ✅ Done |
 | M3 | Input experience (wizard + t-shirt sizing) | ⬜ Not started |
 | M4 | Executive results dashboard | ⬜ Not started |
 | M5 | SaaS benefits module | ⬜ Not started |
@@ -144,17 +144,17 @@ zero I/O (pure functions); engine version constant `ENGINE_VERSION = "1.x"` expo
 
 Goal: unlimited named analyses, all data kept.
 
-- [ ] **M2-T1** SQLAlchemy models + Alembic migration: `analyses` (id, name unique,
+- [x] **M2-T1** SQLAlchemy models + Alembic migration: `analyses` (id, name unique,
       customer_name, description, created_at, updated_at) and `analysis_versions`
       (id, analysis_id, inputs JSONB, results JSONB, engine_version, created_at) —
       every save appends a version; latest version is the live one.
-- [ ] **M2-T2** CRUD endpoints: create (name required, seeded from defaults +
+- [x] **M2-T2** CRUD endpoints: create (name required, seeded from defaults +
       chosen/derived t-shirt size), list (with headline KPIs for the library view),
       get latest, update inputs (recalculates + appends version), rename, duplicate,
       soft-delete + restore. Consistent error envelope; 409 on duplicate name.
-- [ ] **M2-T3** Version history endpoints: list versions, get specific version
+- [x] **M2-T3** Version history endpoints: list versions, get specific version
       (feeds "as-of" reporting later).
-- [ ] **M2-T4** API integration tests against a throwaway Postgres (docker) covering
+- [x] **M2-T4** API integration tests against a throwaway Postgres (docker) covering
       the full lifecycle: create → edit → duplicate → soft-delete → restore.
 
 **Definition of Done**: full lifecycle test green; restarting the stack
