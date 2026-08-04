@@ -124,7 +124,8 @@ test("print report route renders cover and figures", async ({ page }) => {
 
   await page.goto(`/report/${id}/print`);
   await expect(page.getByTestId("print-report")).toBeVisible();
-  await expect(page.getByText("On-Prem → SaaS Business Case")).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Modern PAM Migration/ })).toBeVisible();
+  await expect(page.getByText("Idira by Palo Alto Networks")).toBeVisible();
   await expect(page.getByText("€530,437").first()).toBeVisible();
   await expect(page.getByText("Methodology & disclaimer")).toBeVisible();
 });

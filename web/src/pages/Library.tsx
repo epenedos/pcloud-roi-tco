@@ -83,7 +83,7 @@ function CreateDialog({ onClose }: { onClose: () => void }) {
             Cancel
           </button>
           <button
-            className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+            className="rounded-lg bg-[var(--brand-500)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--brand-750)] disabled:opacity-50"
             onClick={submit}
             disabled={busy}
             data-testid="create-submit"
@@ -141,7 +141,7 @@ export default function Library() {
         <button
           onClick={() => setShowCreate(true)}
           data-testid="new-analysis"
-          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow hover:bg-blue-700"
+          className="rounded-lg bg-[var(--brand-500)] px-4 py-2 text-sm font-medium text-white shadow hover:bg-[var(--brand-750)]"
         >
           + New analysis
         </button>
@@ -170,7 +170,7 @@ export default function Library() {
               <Link to={`/analysis/${item.id}`} className="grow">
                 <div className="flex items-start justify-between gap-2">
                   <h2 className="font-semibold text-slate-900">{item.name}</h2>
-                  <span className="whitespace-nowrap rounded-full bg-blue-50 px-2 py-0.5 text-[11px] font-medium text-blue-700">
+                  <span className="whitespace-nowrap rounded-full bg-[var(--brand-tint)] px-2 py-0.5 text-[11px] font-medium text-[var(--brand-750)]">
                     {SIZE_LABELS[item.headline.tshirt_size]}
                   </span>
                 </div>
@@ -183,7 +183,7 @@ export default function Library() {
                       Net savings
                     </div>
                     <div
-                      className={`font-semibold ${item.headline.net_savings >= 0 ? "text-emerald-700" : "text-red-700"}`}
+                      className={`font-semibold ${item.headline.net_savings >= 0 ? "text-[var(--good)]" : "text-[var(--bad)]"}`}
                     >
                       {fmtEur(item.headline.net_savings)}
                     </div>

@@ -123,7 +123,7 @@ export default function AnalysisWorkspace() {
 
   if (error && !inputs)
     return (
-      <div className="rounded-xl border border-red-200 bg-red-50 p-8 text-center text-red-700">
+      <div className="rounded-xl border border-red-200 bg-red-50 p-8 text-center text-[var(--bad)]">
         {error} — <Link className="underline" to="/">back to library</Link>
       </div>
     );
@@ -177,7 +177,7 @@ export default function AnalysisWorkspace() {
               ← Analyses
             </Link>
             <h1 className="text-xl font-semibold text-slate-900">{analysis.name}</h1>
-            <span className="rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700" data-testid="size-badge">
+            <span className="rounded-full bg-[var(--brand-tint)] px-2.5 py-0.5 text-xs font-medium text-[var(--brand-750)]" data-testid="size-badge">
               {SIZE_LABELS[derivedSize]}
             </span>
           </div>
@@ -195,7 +195,7 @@ export default function AnalysisWorkspace() {
               data-testid={`tab-${t}`}
               onClick={() => setSearchParams(t === "inputs" ? {} : { tab: t })}
               className={`rounded-md px-4 py-1.5 font-medium capitalize ${
-                tab === t ? "bg-blue-600 text-white" : "text-slate-600 hover:bg-slate-100"
+                tab === t ? "bg-[var(--brand-500)] text-white" : "text-slate-600 hover:bg-slate-100"
               }`}
             >
               {t}
@@ -213,7 +213,7 @@ export default function AnalysisWorkspace() {
       </div>
 
       {error && (
-        <p className="mb-4 rounded-lg bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p>
+        <p className="mb-4 rounded-lg bg-red-50 px-4 py-2 text-sm text-[var(--bad)]">{error}</p>
       )}
 
       {tab === "dashboard" ? (
@@ -261,7 +261,7 @@ export default function AnalysisWorkspace() {
                         key={size}
                         className={`grow rounded-lg border px-3 py-2 text-center text-xs ${
                           size === derivedSize
-                            ? "border-blue-500 bg-blue-50 font-semibold text-blue-800"
+                            ? "border-[var(--brand-500)] bg-[var(--brand-tint)] font-semibold text-[var(--brand-750)]"
                             : "border-slate-200 bg-white text-slate-400"
                         }`}
                       >
@@ -487,7 +487,7 @@ export default function AnalysisWorkspace() {
                 <div>
                   <dt className="text-slate-500">{inputs.params.horizon}-yr net savings</dt>
                   <dd
-                    className={`text-lg font-bold ${results.summary.net_savings >= 0 ? "text-emerald-700" : "text-red-700"}`}
+                    className={`text-lg font-bold ${results.summary.net_savings >= 0 ? "text-[var(--good)]" : "text-[var(--bad)]"}`}
                     data-testid="live-net-savings"
                   >
                     {fmtEur(results.summary.net_savings)}
@@ -503,14 +503,14 @@ export default function AnalysisWorkspace() {
                 </div>
                 <div className="border-t border-slate-100 pt-3">
                   <dt className="text-slate-500">Total value incl. benefits</dt>
-                  <dd className="font-semibold text-indigo-700">
+                  <dd className="font-semibold text-[var(--brand-750)]">
                     {fmtEur(results.benefits.total_value)}
                   </dd>
                 </div>
               </dl>
               <button
                 onClick={() => setSearchParams({ tab: "dashboard" })}
-                className="mt-4 w-full rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                className="mt-4 w-full rounded-lg bg-[var(--brand-500)] px-3 py-2 text-sm font-medium text-white hover:bg-[var(--brand-750)]"
               >
                 View dashboard →
               </button>
@@ -555,7 +555,7 @@ function BenefitCard({
           <div className="text-[11px] uppercase tracking-wide text-slate-400">
             {recurring ? "per year" : "one-time (Y1)"}
           </div>
-          <div className="font-semibold text-indigo-700" data-testid={`benefit-${id}-value`}>
+          <div className="font-semibold text-[var(--brand-750)]" data-testid={`benefit-${id}-value`}>
             {fmtEur(amount)}
           </div>
         </div>

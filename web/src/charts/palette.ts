@@ -1,12 +1,14 @@
-/* Validated light-mode palette (dataviz reference instance).
+/* IDIRA / Palo Alto Networks 2026 brand palette (validated with the dataviz
+   six-checks script on the light surface — all pass).
    Series colors follow the entity, never rank:
-   On-Prem is always orange, SaaS always blue, savings always green. */
+   On-Prem is always PANW Parent orange, SaaS is always Idira blue,
+   savings are always Cortex green, benefits Prisma teal. */
 export const COLORS = {
-  onprem: "#eb6834",
-  saas: "#2a78d6",
-  saving: "#008300",
-  negative: "#e34948",
-  benefit: "#4a3aa7",
+  onprem: "#fa582d",   // Parent_500
+  saas: "#265bff",     // Idira_500
+  saving: "#0f9347",   // Cortex_750
+  negative: "#c84727", // Unit42_500
+  benefit: "#0196b3",  // Prisma_750
   gridline: "#e2e8f0",
   ink: "#0b0b0b",
   inkSecondary: "#52514e",

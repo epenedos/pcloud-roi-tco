@@ -16,9 +16,9 @@ function Kpi({
 }) {
   const toneCls =
     tone === "good"
-      ? "text-emerald-700"
+      ? "text-[var(--good)]"
       : tone === "bad"
-        ? "text-red-700"
+        ? "text-[var(--bad)]"
         : "text-slate-900";
   return (
     <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
