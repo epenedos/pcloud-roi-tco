@@ -84,6 +84,45 @@ make seed        # creates two demo analyses (idempotent)
 9. Close on the Methodology page: every formula is documented and the engine is
    verified against the reference workbook by an automated parity test.
 
+## Restoring a deleted analysis
+
+Deleting an analysis in the UI is a **soft delete**: the analysis and its full
+version history stay in the database, hidden from the library. To bring one back,
+use the API (all endpoints go through the web port — nginx proxies `/api`):
+
+1. Find the deleted analysis's ID:
+
+   ```bash
+   curl -s "http://localhost:8080/api/analyses?include_deleted=true" | python3 -m json.tool
+   ```
+
+   Deleted entries show `"deleted": true`; note the `id` (a UUID).
+
+2. Restore it:
+
+   ```bash
+   curl -s -X POST "http://localhost:8080/api/analyses/<id>/restore"
+   ```
+
+   The analysis reappears in the library with all versions intact.
+
+One-liner to restore by name:
+
+```bash
+NAME="ACME Corp"
+ID=$(curl -s "http://localhost:8080/api/analyses?include_deleted=true" \
+  | python3 -c "import sys,json;print(next(a['id'] for a in json.load(sys.stdin) if a['name']==\"$NAME\" and a['deleted']))")
+curl -s -X POST "http://localhost:8080/api/analyses/$ID/restore"
+```
+
+Notes:
+
+- An analysis's name stays reserved while it is soft-deleted — creating a new
+  analysis with the same name returns `409 Conflict`. Restore the old one first,
+  or choose another name.
+- There is no hard-delete endpoint: nothing is ever purged unless you remove it
+  directly in the database.
+
 ## Backup & restore
 
 All analysis data lives in the `pamroi_pgdata` volume. Logical backup:
