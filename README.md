@@ -57,6 +57,33 @@ docs/reference/        # customer reference workbook
 ROADMAP.md             # loop-executable build plan and progress
 ```
 
+## Demo data
+
+```bash
+make seed        # creates two demo analyses (idempotent)
+```
+
+- **Demo — Workbook example (Mid-Range)**: the reference workbook case (5,000
+  passwords, €515,593 net savings, 78.2% ROI, 4.4-month payback).
+- **Demo — Global bank (Very Large)**: 250,000 passwords, enterprise-scale figures.
+
+## 10-minute demo script
+
+1. `make up && make seed`, open http://localhost:8080.
+2. Library: point out the two demo cases and their headline KPI badges.
+3. Create a new analysis live: name it after the customer, enter their password
+   count — show the t-shirt size badge react (999 → Small, 1,000 → Mid-Range).
+4. Inputs: put the customer's real renewal quote and SaaS quote into section A —
+   watch the live summary sidebar update as you type.
+5. Inventory: show the pre-sized component grid and edit a PSM count; note the
+   per-row annual € preview.
+6. Benefits: toggle a benefit off to show the value view is honest and itemized.
+7. Dashboard: walk the KPI band → category comparison → cash-flow with payback →
+   savings waterfall ("where the value comes from").
+8. Click **Export PDF** and open the boardroom report.
+9. Close on the Methodology page: every formula is documented and the engine is
+   verified against the reference workbook by an automated parity test.
+
 ## Disclaimer
 
 Default unit rates and benefit assumptions are illustrative industry benchmarks, not a

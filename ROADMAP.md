@@ -45,7 +45,7 @@ Rules:
 | M4 | Executive results dashboard | ✅ Done |
 | M5 | SaaS benefits module | ✅ Done |
 | M6 | PDF report export | ✅ Done |
-| M7 | Executive polish & demo readiness | ⬜ Not started |
+| M7 | Executive polish & demo readiness | ✅ Done |
 | M8 | Hardening & v1 release | ⬜ Not started |
 
 ---
@@ -256,18 +256,18 @@ render, no clipped content), reproducible, and downloads from the UI.
 
 ## M7 — Executive polish & demo readiness
 
-- [ ] **M7-T1** Visual pass: consistent typography scale, spacing, brand-neutral
+- [x] **M7-T1** Visual pass: consistent typography scale, spacing, brand-neutral
       professional palette (CyberArk-adjacent blues), loading/empty/error states
       everywhere, dark-mode-safe charts.
-- [ ] **M7-T2** Number formatting audit: EUR thousands separators, one decimal on
+- [x] **M7-T2** Number formatting audit: EUR thousands separators, one decimal on
       %, months with one decimal, consistent rounding-at-presentation (engine stays
       full precision).
-- [ ] **M7-T3** Seed script: `make seed` (or compose profile) creating two demo
+- [x] **M7-T3** Seed script: `make seed` (or compose profile) creating two demo
       analyses — the workbook golden case (Mid-Range) and a Very Large showcase.
-- [ ] **M7-T4** Guardrails: friendly handling of degenerate inputs (zero SaaS quote,
+- [x] **M7-T4** Guardrails: friendly handling of degenerate inputs (zero SaaS quote,
       negative savings scenario renders honestly — the tool must stay credible when
       SaaS loses), horizon ≠ 3 sanity.
-- [ ] **M7-T5** In-app methodology page reproducing CALC-SPEC in readable form +
+- [x] **M7-T5** In-app methodology page reproducing CALC-SPEC in readable form +
       workbook lineage note.
 
 **Definition of Done**: 10-minute demo script (in README) runs end-to-end flawlessly

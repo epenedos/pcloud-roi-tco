@@ -1,6 +1,7 @@
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Library from "./pages/Library";
 import AnalysisWorkspace from "./pages/AnalysisWorkspace";
+import Methodology from "./pages/Methodology";
 import PrintReport from "./pages/PrintReport";
 
 function Shell({ children }: { children: React.ReactNode }) {
@@ -21,6 +22,11 @@ function Shell({ children }: { children: React.ReactNode }) {
               </div>
             </div>
           </Link>
+          <nav className="flex items-center gap-4 text-sm">
+            <Link to="/methodology" className="text-blue-200 hover:text-white">
+              Methodology
+            </Link>
+          </nav>
         </div>
       </header>
       <main className="mx-auto max-w-7xl px-6 py-8">{children}</main>
@@ -43,6 +49,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Library />} />
         <Route path="/analysis/:id" element={<AnalysisWorkspace />} />
+        <Route path="/methodology" element={<Methodology />} />
       </Routes>
     </Shell>
   );
