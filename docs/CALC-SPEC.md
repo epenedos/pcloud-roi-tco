@@ -54,11 +54,16 @@ only after an explicit confirmation (never silently destroy user edits).
 | CPM | Windows | 1 × 4/8/100 | 2 × 4/8/100 | 3 × 8/16/100 | 4 × 8/16/150 |
 | PSM | Windows | 1 × 8/16/250 | 3 × 8/16/250 | 6 × 8/32/500 | 10 × 16/64/500 |
 | PSMP | Linux | 1 × 4/8/100 | 2 × 4/8/100 | 3 × 8/16/100 | 4 × 8/16/150 |
+| PVWA (Privileged Web Access) | Windows | 1 × 4/8/160 | 2 × 8/16/160 | 3 × 16/32/160 | 4 × 32/64/160 |
 | PTA | Linux | 0 | 1 × 8/32/1000 | 1 × 16/64/2000 | 2 × 16/64/2000 |
 
-The Mid-Range column equals the workbook's example inventory, so the golden parity test
-runs at `num_passwords = 5,000`. Defaults live in versioned config (not code constants
-scattered around) so field engineers can tune them.
+Defaults live in versioned config (not code constants scattered around) so field
+engineers can tune them.
+
+**Workbook lineage note**: the reference workbook's inventory predates the PVWA row and
+is frozen separately in the defaults registry (`workbook_inventory`). The golden parity
+test (§6) and the "Workbook example" seed use that frozen inventory at
+`num_passwords = 5,000`; the live Mid-Range defaults additionally include PVWA.
 
 ### B. On-Prem Component Inventory
 Per component row: `qty`, `vcpu_each`, `ram_gb_each`, `storage_gb_each`, `os`

@@ -41,3 +41,10 @@ def default_inputs_dict(num_passwords: int | None = None) -> dict:
 def default_inventory_for(size_key: str) -> list[dict]:
     data = load_defaults()
     return json.loads(json.dumps(data["tshirt_inventories"][size_key]))
+
+
+def workbook_inventory() -> list[dict]:
+    """The reference workbook's component inventory, frozen for golden parity
+    and the workbook demo. Excludes components added later (e.g. PVWA)."""
+    data = load_defaults()
+    return json.loads(json.dumps(data["workbook_inventory"]))

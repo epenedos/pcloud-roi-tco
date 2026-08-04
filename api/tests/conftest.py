@@ -8,14 +8,17 @@ os.environ.setdefault("PAMROI_DATABASE_URL", f"sqlite:///{_TEST_DB}")
 
 import pytest
 
-from app.engine.defaults import default_inputs_dict
+from app.engine.defaults import default_inputs_dict, workbook_inventory
 from app.engine.models import CalcInputs
 
 
 @pytest.fixture
 def workbook_inputs() -> CalcInputs:
-    """Workbook example input set (Mid-Range, 5,000 passwords)."""
-    return CalcInputs(**default_inputs_dict(num_passwords=5000))
+    """The reference workbook's exact input set (5,000 passwords, frozen
+    workbook inventory — current Mid-Range defaults additionally include PVWA)."""
+    inputs = default_inputs_dict(num_passwords=5000)
+    inputs["inventory"] = workbook_inventory()
+    return CalcInputs(**inputs)
 
 
 @pytest.fixture(scope="session")

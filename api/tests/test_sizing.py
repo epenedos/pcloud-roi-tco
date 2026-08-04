@@ -39,10 +39,30 @@ def test_mid_range_inventory_matches_workbook():
 def test_all_sizes_have_full_inventory():
     for size in TShirtSize:
         inv = default_inventory(size)
-        assert len(inv) == 6
+        assert len(inv) == 7
         names = {r.name for r in inv}
         assert "Vault (Primary Cluster)" in names
         assert "PSM" in names
+        assert "PVWA" in names
+
+
+@pytest.mark.parametrize(
+    ("size", "qty", "vcpu", "ram"),
+    [
+        (TShirtSize.SMALL, 1, 4, 8),
+        (TShirtSize.MID_RANGE, 2, 8, 16),
+        (TShirtSize.LARGE, 3, 16, 32),
+        (TShirtSize.VERY_LARGE, 4, 32, 64),
+    ],
+)
+def test_pvwa_specs_per_size(size, qty, vcpu, ram):
+    pvwa = next(r for r in default_inventory(size) if r.name == "PVWA")
+    assert pvwa.qty == qty
+    assert pvwa.vcpu_each == vcpu
+    assert pvwa.ram_gb_each == ram
+    assert pvwa.storage_gb_each == 160
+    assert pvwa.os == "Windows"
+    assert pvwa.role == "Privileged Web Access"
 
 
 def test_sizes_scale_up():
